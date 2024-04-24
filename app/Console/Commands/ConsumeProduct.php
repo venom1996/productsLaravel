@@ -15,16 +15,20 @@ class ConsumeProduct extends Command
     {
         $rabbitMQService = new RabbitMQService();
         $rabbitMQService->consumeMessage('products', function ($message) {
+
             $data = json_decode($message->body, true);
 
             $arFieldsData = [
                 'name' => $data['name'],
                 'description' => $data['description'],
-                'user_id' => 1,
+                'user_id' => $data['user_id'],
                 'price' => (int)$data['price'],
-                'path_photo' => 'asdadfg'
+                //'path_photo' => $data['photo']
             ];
+
+
             var_dump($arFieldsData);
+
             Products::create($arFieldsData);
         });
     }

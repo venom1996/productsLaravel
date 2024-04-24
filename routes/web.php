@@ -26,8 +26,10 @@ Route::get('/dashboard', function () {
     return view('dashboard')->with('data', $productsData);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//проверяем через middleware, только авторизованные юзеры могут слать запросы в контроллер
+Route::post('/dashboard', [QueueController::class, 'sendToRabbitMQ'])->name('dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('/dashboard', [QueueController::class, 'sendToRabbitMQ'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

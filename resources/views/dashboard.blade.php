@@ -25,7 +25,7 @@
                             <td>{{$item['id']}}</td>
                             <td>{{$item['name']}}</td>
                             <td>{{$item['description']}}</td>
-                            <td>{{$item['path_photo']}}</td>
+                            <td><img class="img-thumbnail" src="{{$item['path_photo']}}"></td>
                             <td>{{$item['price']}}</td>
                         </tr>
                         @endforeach
@@ -45,15 +45,20 @@
                                     <h5 class="modal-title" id="exampleModalLabel">Добавление товара</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                                 </div>
+
                                 <div class="modal-body">
-                                    <label for="exampleFormControlInput1" class="form-label">Название</label>
-                                    <input type="text" class="form-control" id="name">
-                                    <label for="exampleFormControlInput1" class="form-label">Описание</label>
-                                    <input type="text" class="form-control" id="description">
-                                    <label for="exampleFormControlInput1" class="form-label">Цена</label>
-                                    <input type="text" class="form-control" id="price">
+                                    <form id="modal" enctype="multipart/form-data">
 
+                                        <label for="exampleFormControlInput1" class="form-label">Название</label>
+                                        <input type="text" class="form-control" name="name" id="name">
+                                        <label for="exampleFormControlInput1" class="form-label">Описание</label>
+                                        <input type="text" class="form-control" name="description" id="description">
+                                        <label for="exampleFormControlInput1" class="form-label">Цена</label>
+                                        <input type="text" class="form-control" name="price" id="price">
+                                        <label class="form-label" for="customFile">Фото</label>
+                                        <input type="file" class="form-control" name="photo" id="photo">
 
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" id="save">Сохранить</button>
