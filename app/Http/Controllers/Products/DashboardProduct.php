@@ -11,13 +11,7 @@ class DashboardProduct extends Controller
     {
         $query = Products::all()->toArray();
 
-
         return !empty($query) ? $query : [];
     }
 
-
-    public static function add()
-    {
-
-    }
 }
