@@ -22,15 +22,17 @@ class QueueController extends Controller
 
             //текущий авторизованный юзер
             $user = Auth::user();
+
             // Получаем файл из запроса
             $photo = $request->file('photo');
 
-            $path = 'uploads/photos';
+            if ($photo->getClientMimeType() !== 'image/jpeg') {
+                return response()->json(['message' => 'Формат не соответствует, загрузите в jpg']);
+            }
 
-            //$filename = uniqid() . '_' . $photo->getClientOriginalName();
-            $filename = $photo->getClientOriginalName();
-            // Сохраняем
-            $photo->move($path, $filename);
+            $binarFile = file_get_contents($photo->getPathname());
+
+            $photoFile = base64_encode($binarFile);
 
 
             //массив для отправки в очередь
@@ -38,7 +40,7 @@ class QueueController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
-                'photo' => $path . '/' . $filename,
+                'photo' => $photoFile,
                 'user_id' => $user['id']
             ];
 

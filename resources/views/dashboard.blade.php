@@ -54,7 +54,7 @@
                                         <label for="exampleFormControlInput1" class="form-label">Описание</label>
                                         <input type="text" class="form-control" name="description" id="description">
                                         <label for="exampleFormControlInput1" class="form-label">Цена</label>
-                                        <input type="text" class="form-control" name="price" id="price">
+                                        <input type="number" class="form-control" name="price" id="price">
                                         <label class="form-label" for="customFile">Фото</label>
                                         <input type="file" class="form-control" name="photo" id="photo">
 
